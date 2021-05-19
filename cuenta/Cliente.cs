@@ -9,9 +9,8 @@ namespace cuenta
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public double Efectivo { get; set; }
-        public double Saldo { get; set; }
-        public int Cbu { get; set; } = 0;
-        
+        public double Saldo => Efectivo + Saldo;
+       
        
         public Cuenta Cuenta { get; set; }
 
@@ -19,20 +18,23 @@ namespace cuenta
         {
             Cuenta = new Cuenta();
             Efectivo = 0;
-            Saldo = 0;
         }
+
+        public int Cbu => Cuenta.Cbu;
 
         public void Acreditar(double monto)
         {
-            Saldo = Saldo + monto * 0.8;
+            Efectivo = Efectivo + monto * 0.8;
             Cuenta.Acreditar(monto * 0.2);
         }
         public void Debitar(double monto)
         {
-            Saldo = Saldo - monto * 0.8;
+            Efectivo = Efectivo - monto * 0.8;
             Cuenta.Debitar(monto * 0.2);
         }
 
         public bool TieneAlMenos(double monto) => Saldo >= monto;
+
+        
     }
 }
