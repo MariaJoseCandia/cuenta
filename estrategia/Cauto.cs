@@ -1,8 +1,8 @@
 using cuenta;
 
-namespace banco.Estrategia
+namespace cuenta
 {
-    public interface IEstrategia
+    class Emergencia : IEstrategia
     {
         void Debitar(Cliente cliente, double monto);
         void Acreditar(Cliente cliente, double monto);

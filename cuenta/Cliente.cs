@@ -11,6 +11,7 @@ namespace cuenta
         public double Efectivo { get; set; }
         public double Saldo => Efectivo + Saldo;
         public Cuenta Cuenta { get; set; }
+        public Estrategia IEstrategia;
         public Cliente()
         {
             Cuenta = new Cuenta();
@@ -19,13 +20,19 @@ namespace cuenta
         public int Cbu => Cuenta.Cbu;
         public void Acreditar(double monto)
         {
-            Efectivo = Efectivo + monto * 0.8;
-            Cuenta.Acreditar(monto * 0.2);
+            Estrategia.Acreditar(this.monto)
+            if (!Estrategia.EsApto(this))
+            {
+                Estrategias.EstrategiaPara(this);
+            }
         }
         public void Debitar(double monto)
         {
-            Efectivo = Efectivo - monto * 0.8;
-            Cuenta.Debitar(monto * 0.2);
+            Estrategia.Debitar(this.monto)
+            if (!Estrategia.EsApto(this))
+            {
+                Estrategias.EstrategiaPara(this);
+            }
         }
         public bool TieneAlMenos(double monto) => Saldo >= monto;
     }
