@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using banco.Estrategia;
 
 namespace cuenta
 {
@@ -11,7 +12,7 @@ namespace cuenta
         public double Efectivo { get; set; }
         public double Saldo => Efectivo + Saldo;
         public Cuenta Cuenta { get; set; }
-        public Estrategia IEstrategia;
+        public IEstrategia Estrategia{get; set;}
         public Cliente()
         {
             Cuenta = new Cuenta();
@@ -20,7 +21,7 @@ namespace cuenta
         public int Cbu => Cuenta.Cbu;
         public void Acreditar(double monto)
         {
-            Estrategia.Acreditar(this.monto)
+            Estrategia.Acreditar(this, monto);
             if (!Estrategia.EsApto(this))
             {
                 Estrategias.EstrategiaPara(this);
@@ -28,7 +29,7 @@ namespace cuenta
         }
         public void Debitar(double monto)
         {
-            Estrategia.Debitar(this.monto)
+            Estrategia.Debitar(this, monto);
             if (!Estrategia.EsApto(this))
             {
                 Estrategias.EstrategiaPara(this);

@@ -1,9 +1,9 @@
 using cuenta;
 
-namespace Estrategias
+namespace banco.Estrategias
 {
     class Estrategias
     {
-        list static 
+       public void EstrategiaPara(cliente)
     }
 }
