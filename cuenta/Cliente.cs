@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using banco.Estrategia;
@@ -36,5 +37,8 @@ namespace cuenta
             }
         }
         public bool TieneAlMenos(double monto) => Saldo >= monto;
+
+        public double Saldo()
+        
     }
 }
