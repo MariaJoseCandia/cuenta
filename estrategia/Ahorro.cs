@@ -1,14 +1,29 @@
 using cuenta;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace cuenta
 {
     class Emergencia : IEstrategia
     {
-        void Debitar(Cliente cliente, double monto)
+        public void Acreditar(Cliente, double monto)
         {
-            
+            cliente.AcreditarEfectivo(monto*0.5);
+            cliente.Cuenta.Acreditar(monto*0.5);
         }
-        void Acreditar(Cliente cliente, double monto);
-        bool EsApto(Cliente cliente);
+        public void Debitar(Cliente cliente, double monto)
+        {
+            if(cliente.TieneAlMenos(monto))
+            {
+                cliente.DebitarEfectivo(monto);
+            }
+            else
+            {
+                monto -= cliente.VaciarEfectivo();
+                Cliente.Cuenta.DebitarEfectivo(monto);
+            }
+            public bool EsApto(Cliente cliente) => cliente.Efectivo > 50000;
+        }
     }
 }
