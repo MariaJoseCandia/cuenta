@@ -37,8 +37,13 @@ namespace cuenta
             }
         }
         public bool TieneAlMenos(double monto) => Saldo >= monto;
-
-        public double Saldo()
-        
+        public void DebitarEfectivo(double monto) => Efectivo -= monto;
+        public void AcreditarEfectivo(double monto) => Efectivo += monto;
+        internal double VaciarEfectivo()
+        {
+            var Efectivo = this.Efectivo;
+            Efectivo = 0;
+            return Efectivo;
+        }
     }
 }
